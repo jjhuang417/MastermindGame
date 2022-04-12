@@ -1,6 +1,6 @@
 Mastermind Game
-1. Run npm install
-2.
+1. Fork repo
+2. Run npm install
 
 Engineering Journal
 
@@ -8,4 +8,6 @@ Engineering Journal
 - Created the todo.txt
 
 4/12/22
-- Try to make a request to the server so that I can retrieve the sequence from the API.
+- Made the API call from the server to get the sequence.
+- Made an API call from the front end to get the
+-
