@@ -17,4 +17,5 @@ Server Side
 - Need to make API to get the numbers sequence
 - Implement game logic
   + Need to match player inputs and come up with 3 responses
-  + 
+- Will probably need to use express router for cleaner looking structure.
+- 

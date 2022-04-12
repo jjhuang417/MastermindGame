@@ -12,10 +12,12 @@ app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
 });
 
-axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new')
-.then((res) => {
-  console.log(res.data);
-})
-.catch((err) => {
-  console.log(err);
+app.get('/num', (req, res) => {
+  axios.get('https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new')
+  .then((response) => {
+    res.status(200).send(response.data)
+  })
+  .catch((err) => {
+    res.status(404).send(err);
+  })
 })
