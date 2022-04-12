@@ -1,8 +1,7 @@
 To Do's
 
-API
-- Figure out how to use the API to generate random sequence of 4 numbers from 0 - 7
-- 
+API - DONE
+- Figure out how to use the API to generate random sequence of 4 numbers from 0 - 7.
 
 Client Side
 - Need to create the User Interface of the application.
@@ -15,5 +14,7 @@ Client Side
     - The player's guess was incorrect
 
 Server Side
--
-
+- Need to make API to get the numbers sequence
+- Implement game logic
+  + Need to match player inputs and come up with 3 responses
+  + 
