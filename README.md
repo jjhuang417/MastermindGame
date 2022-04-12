@@ -1,1 +1,3 @@
-This is a template repo for React / Webpack projects with Express servers set up
+Mastermind Game
+1. Run npm install
+2. 

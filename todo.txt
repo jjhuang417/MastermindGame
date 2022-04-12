@@ -1,0 +1,19 @@
+To Do's
+
+API
+- Figure out how to use the API to generate random sequence of 4 numbers from 0 - 7
+- 
+
+Client Side
+- Need to create the User Interface of the application.
+  + Title
+  + The game board
+  + Numpad for inputting the player response.
+  + Message telling the player one of the 3
+    - The player had guess a correct integer
+    - The player had guessed a correct number and its correct location
+    - The player's guess was incorrect
+
+Server Side
+-
+
