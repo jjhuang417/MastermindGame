@@ -1,0 +1,9 @@
+.titleWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.numPadWrap {
+  display: flex;
+  justify-content: center;
+}

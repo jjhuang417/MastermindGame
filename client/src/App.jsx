@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-const axios = require('axios');
+import axios from 'axios';
+
+// Componenet import
+import Numpad from './Numpad.jsx';
 
 const App = () => {
 
@@ -22,9 +25,11 @@ const App = () => {
 
   return (
     <div name='highestDiv'>
-      <div name='titleWrap'>
-        <h1>Mastermind Game 🔍</h1>
+      <div name='titleWrap'
+        className="titleWrap">
+        <h1 className='title'>Mastermind Game 🔍</h1>
       </div>
+      <Numpad></Numpad>
     </div>
   )
 };
