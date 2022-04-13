@@ -10,7 +10,7 @@ const App = () => {
   // State
   const [sequence, setSequence] = useState('');
   const [guesses, SetGuess] = useState(10);
-  const [playerInput, setInput] = useState([1,2]);
+  const [playerInput, setInput] = useState([]);
 
   // Get sequence and save as state
   useEffect(() => {
@@ -21,12 +21,11 @@ const App = () => {
     .catch((err) => {
       console.log(err);
     });
-  }, [playerInput]);
+  }, []);
 
   // Function to add number
   const addNum = (num) => {
-    playerInput.push(num)
-    setInput(playerInput);
+    setInput([...playerInput, num]);
   }
 
   console.log('sequence: ', sequence);
