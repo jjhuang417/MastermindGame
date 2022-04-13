@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Componenet import
 import Numpad from './Numpad.jsx';
+import GameBoard from './GameBoard.jsx';
 
 const App = () => {
 
@@ -24,12 +25,12 @@ const App = () => {
   console.log(sequence);
 
   return (
-    <div name='highestDiv'>
-      <div name='titleWrap'
-        className="titleWrap">
+    <div className='highestDiv'>
+      <div className='titleWrap'>
         <h1 className='title'>Mastermind Game 🔍</h1>
       </div>
-      <Numpad></Numpad>
+      <Numpad />
+      <GameBoard />
     </div>
   )
 };

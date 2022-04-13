@@ -3,8 +3,8 @@ import React from 'react';
 const GameBoard = () => {
 
   return (
-    <div>
-      
+    <div className='gameBoard'>
+      <h1>this is the gameBoard</h1>
     </div>
   );
 }

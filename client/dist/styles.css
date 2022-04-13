@@ -7,3 +7,10 @@
   display: flex;
   justify-content: center;
 }
+
+.gameBoard {
+  display: flex;
+  justify-content: center;
+  border: 1px;
+  border-color: black;
+}

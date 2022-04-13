@@ -12,6 +12,7 @@ const Numpad = () => {
       <button>5</button>
       <button>6</button>
       <button>7</button>
+      <button>Enter</button>
     </div>
   )
 };
