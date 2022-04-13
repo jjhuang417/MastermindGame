@@ -9,5 +9,6 @@ Engineering Journal
 
 4/12/22
 - Made the API call from the server to get the sequence.
-- Made an API call from the front end to get the
--
+- The API provided the sequence as a string with line breaks.
+- I split the string to turn it into an array and popped off the last line break.
+- Made an API call from the front end to get the sequence from the server.

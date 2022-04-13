@@ -1,18 +1,25 @@
 import React from 'react';
 
-const Numpad = () => {
+const Numpad = (props) => {
+
+  const handleAdd = (event) => {
+    event.preventDefault();
+    props.addNum(event.target.value);
+  }
 
   return (
     <div name='numPadWrap' className='numPadWrap'>
-      <button>0</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
+      <button onClick={handleAdd} type='button' value='0'>0</button>
+      <button type='button' value='1'>1</button>
+      <button type='button' value='2'>2</button>
+      <button type='button' value='3'>3</button>
+      <button type='button' value='4'>4</button>
+      <button type='button' value='5'>5</button>
+      <button type='button' value='6'>6</button>
+      <button type='button' value='7'>7</button>
+      <button>Delete</button>
       <button>Enter</button>
+      <br></br>
     </div>
   )
 };

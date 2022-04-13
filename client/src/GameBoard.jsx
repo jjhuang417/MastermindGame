@@ -1,10 +1,12 @@
 import React from 'react';
 
-const GameBoard = () => {
+const GameBoard = (props) => {
 
   return (
     <div className='gameBoard'>
-      <h1>this is the gameBoard</h1>
+      {props.playerInput.map(int => {
+        return <h1 className='playerInput'>{int}</h1>
+      })}
     </div>
   );
 }
