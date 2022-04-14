@@ -38,7 +38,7 @@ app.post('/submit', (req, res) => {
   let playerGuess = req.body;
   for (let i = 0; i < answerSequence.length; i += 1) {
     if (playerGuess[i] === answerSequence[i]) rightSpot += 1;
-    if (playerGuess.incldues(answerSequence[i]) && playerGuess[i]!== answerSequence[i]) included += 1;
+    if (playerGuess.includes(answerSequence[i]) && playerGuess[i]!== answerSequence[i]) included += 1;
     if (rightSpot === 4) res.status(200).send();
   }
   // here is where game logic
@@ -48,4 +48,3 @@ app.post('/submit', (req, res) => {
 
 // Answer: [1, 2, 3, 4];
 // Player: [0, 0, 2, 2];
-
