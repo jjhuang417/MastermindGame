@@ -4,6 +4,7 @@ import axios from 'axios';
 // Componenet import
 import Numpad from './Numpad.jsx';
 import GameBoard from './GameBoard.jsx';
+import InputHistory from './InputHistory.jsx';
 
 const App = () => {
 
@@ -14,22 +15,30 @@ const App = () => {
 
   // Get sequence and save as state
   useEffect(() => {
-    axios.get('/num')
+    axios.get('/initialize')
     .then((res) => {
-      setSequence(res.data);
+      console.log('Game Start');
     })
     .catch((err) => {
       console.log(err);
     });
   }, []);
 
-  // Function to add number
+  // F(n) to add number
   const addNum = (num) => {
-    setInput([...playerInput, num]);
+    if (playerInput.length < 4) {
+      setInput([...playerInput, num]);
+    }
   }
 
-  console.log('sequence: ', sequence);
-  console.log('input: ', playerInput);
+  // F(n) to remove a digit
+  const deleteNum = () => {
+    let sliced = playerInput.slice(0, playerInput.length - 1);
+    setInput(sliced);
+  }
+
+  // F(n) to submit playerInput
+
 
   return (
     <div className='highestDiv'>
@@ -37,17 +46,19 @@ const App = () => {
         <h1 className='title'>Mastermind Game 🔍</h1>
       </div>
       <div className='guessCounterDiv'>
-        <h1>{guesses} Guesses Left</h1>
+        <h2>{guesses} {guesses > 1 ? 'Tries' : 'Try'} Left</h2>
       </div>
       <Numpad
         playerInput={playerInput}
         setInput={setInput}
         addNum={addNum}
+        deleteNum={deleteNum}
       />
       <GameBoard
         playerInput={playerInput}
         setInput={setInput}
       />
+      <InputHistory />
     </div>
   )
 };
