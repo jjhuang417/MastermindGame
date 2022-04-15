@@ -2,14 +2,22 @@ import React from 'react';
 
 const Numpad = (props) => {
 
-  const handleAdd = (event) => {
+  // Adding numbers
+  const handleAdd = () => {
     event.preventDefault();
     props.addNum(event.target.value);
   }
 
+  // Delete numbers
   const handleDelete = () => {
     event.preventDefault();
     props.deleteNum();
+  }
+
+  // Submit player guess
+  const handleSubmit = () => {
+    event.preventDefault();
+    props.submitGuess();
   }
 
   return (
@@ -23,7 +31,7 @@ const Numpad = (props) => {
       <button onClick={handleAdd}  type='button' value='6'>6</button>
       <button onClick={handleAdd}  type='button' value='7'>7</button>
       <button onClick={handleDelete}>Delete</button>
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   )
 };

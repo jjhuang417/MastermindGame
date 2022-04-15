@@ -10,8 +10,9 @@ const App = () => {
 
   // State
   const [sequence, setSequence] = useState('');
-  const [guess, SetGuess] = useState(10);
+  const [guess, setGuess] = useState(10);
   const [playerInput, setPlayerInput] = useState([]);
+  const [history, setHistory] = useState([]);
 
   // Get sequence and save as state
   useEffect(() => {
@@ -38,7 +39,24 @@ const App = () => {
   }
 
   // F(n) to submit playerInput
+  const submitGuess = () => {
+    if (playerInput.length === 4) {
+      axios.get('/submit', {
+        params: {
+          input: playerInput
+        }
+      })
+      .then((response) => {
+        setHistory([...history, response.data]);
+        setGuess(guess - 1);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+  }
 
+  console.log(history);
 
   return (
     <div className='highestDiv'>
@@ -53,6 +71,11 @@ const App = () => {
         setPlayerInput={setPlayerInput}
         addNum={addNum}
         deleteNum={deleteNum}
+        submitGuess={submitGuess}
+        guess={guess}
+        setGuess={setGuess}
+        history={history}
+        setHistory={setHistory}
       />
       <GameBoard
         playerInput={playerInput}

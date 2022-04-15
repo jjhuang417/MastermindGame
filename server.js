@@ -69,6 +69,6 @@ app.get('/initialize', (req, res) => {
 // Route for guess checking
 app.get('/submit', (req, res) => {
   let copyAnswer = answerSequence.slice(0);
-  let copyInput = JSON.parse(req.query.playerInput).slice(0);
+  let copyInput = req.query.input.slice(0);
   res.send(checkGuess(copyAnswer, copyInput))
 });
