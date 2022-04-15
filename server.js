@@ -24,9 +24,6 @@ const getAnswer = async () => {
   let result = await axios.get(intURL);
   answerSequence = result.data.split('\n');
   answerSequence.pop();
-  for (let i = 0; i < answerSequence.length; i++) {
-    answerSequence[i] = Number(answerSequence[i]);
-  }
   console.log('answer on start up:', answerSequence);
 };
 
@@ -72,5 +69,6 @@ app.get('/submit', (req, res) => {
   let copyInput = req.query.input.slice(0);
   console.log('answer: ', copyAnswer);
   console.log('player: ', copyInput);
-  res.send(checkGuess(copyAnswer, copyInput))
+  let results = checkGuess(copyAnswer, copyInput);
+  res.status(200).send(results);
 });

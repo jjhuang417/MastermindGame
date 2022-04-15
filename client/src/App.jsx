@@ -1,3 +1,4 @@
+// Framework & Packages
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -52,7 +53,11 @@ const App = () => {
         }
       })
       .then((response) => {
-        setHistory([...history, response.data]);
+        setHistory([...history,
+          {
+            num: playerInput,
+            feedback: response.data
+          }]);
         setGuess(guess - 1);
       })
       .catch((error) => {
@@ -72,7 +77,6 @@ const App = () => {
         <h2>{guess} {guess > 1 ? 'Tries' : 'Try'} Left</h2>
       </div>
       <Numpad
-        // playerInput={playerInput}
         addNum={addNum}
         deleteNum={deleteNum}
         wipeNum={wipeNum}
@@ -80,9 +84,11 @@ const App = () => {
       />
       <GameBoard
         playerInput={playerInput}
-        setPlayerInput={setPlayerInput}
       />
-      <InputHistory />
+      <InputHistory
+        history={history}
+        playerInput={playerInput}
+      />
     </div>
   )
 };

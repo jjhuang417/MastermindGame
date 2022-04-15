@@ -27,3 +27,8 @@ Engineering Journal
 - Send back an object containing data to signal the guess results.
 - Was using postman to test the route, i was getting wrecked by the data type comparison.
 - I needed an array but the request was stringifying everything. I had to modify it to an actual array.
+
+4/15/22
+- Encountered a bug where the server was sending back the wrong feedback. It would turn all 'partial' into wrongs.
+- Originally I was sneding back the feedbacks without first saving it into a variable. After saving it into a variable and then sending it, it was finally outputting the right resutls.
+- 
