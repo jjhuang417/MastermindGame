@@ -25,3 +25,5 @@ Engineering Journal
 - Use a loop & 2 pointers to check against answer arr.
 - Initialize 2 counter to check for characters that match and characters that are same but dont match location.
 - Send back an object containing data to signal the guess results.
+- Was using postman to test the route, i was getting wrecked by the data type comparison.
+- I needed an array but the request was stringifying everything. I had to modify it to an actual array.

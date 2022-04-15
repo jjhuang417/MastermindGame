@@ -23,7 +23,7 @@ const Numpad = (props) => {
       <button onClick={handleAdd}  type='button' value='6'>6</button>
       <button onClick={handleAdd}  type='button' value='7'>7</button>
       <button onClick={handleDelete}>Delete</button>
-      <button>Enter</button>
+      <button>Submit</button>
     </div>
   )
 };

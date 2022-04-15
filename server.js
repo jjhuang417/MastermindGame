@@ -22,8 +22,43 @@ let answerSequence;
 const getAnswer = async () => {
   let intURL = 'https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new';
   let result = await axios.get(intURL);
-  answerSequence = result.data;
+  answerSequence = result.data.split('\n');
+  answerSequence.pop();
+  for (let i = 0; i < answerSequence.length; i++) {
+    answerSequence[i] = Number(answerSequence[i]);
+  }
+  console.log(answerSequence);
 };
+
+getAnswer();
+
+// Function for checking game logic
+const checkGuess = (answer, guess) => {
+  let feedback = [];
+  for (let i = 0; i < guess.length; i++) {
+    if (guess[i] === answer[i]) {
+      feedback.push('correct');
+      guess[i] = -1;
+      answer[i] = -1;
+    }
+  }
+  for (let j = 0; j < guess.length; j++) {
+    let include = false;
+    if (answer[j] === -1) continue;
+    for (let k = 0; k < guess.length; k++) {
+      if (guess[k] === -1) {
+        continue;
+      } else if (answer[j] === guess[k]) {
+        feedback.push('partial');
+        guess[k] = -1;
+        include = true;
+        break;
+      }
+    }
+    if (!include) feedback.push('wrong');
+  }
+  return feedback.sort();
+}
 
 // Endpoint for page initial render
 app.get('/initialize', (req, res) => {
@@ -31,20 +66,9 @@ app.get('/initialize', (req, res) => {
   res.status(200).send();
 });
 
-// Route for game logic
-app.post('/submit', (req, res) => {
-  let rightSpot = 0;
-  let included = 0;
-  let playerGuess = req.body;
-  for (let i = 0; i < answerSequence.length; i += 1) {
-    if (playerGuess[i] === answerSequence[i]) rightSpot += 1;
-    if (playerGuess.includes(answerSequence[i]) && playerGuess[i]!== answerSequence[i]) included += 1;
-    if (rightSpot === 4) res.status(200).send();
-  }
-  // here is where game logic
-  // compare userInput with answerSequence
-  // send the request back with an object
+// Route for guess checking
+app.get('/submit', (req, res) => {
+  let copyAnswer = answerSequence.slice(0);
+  let copyInput = JSON.parse(req.query.playerInput).slice(0);
+  res.send(checkGuess(copyAnswer, copyInput))
 });
-
-// Answer: [1, 2, 3, 4];
-// Player: [0, 0, 2, 2];
