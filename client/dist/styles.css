@@ -10,6 +10,7 @@
 
 .numPadWrap {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -36,4 +37,10 @@
   border-style: solid;
   border-width: medium;
   height: 60vh;
+}
+
+.functionButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

@@ -27,7 +27,7 @@ const getAnswer = async () => {
   for (let i = 0; i < answerSequence.length; i++) {
     answerSequence[i] = Number(answerSequence[i]);
   }
-  console.log(answerSequence);
+  console.log('answer on start up:', answerSequence);
 };
 
 getAnswer();
@@ -70,5 +70,7 @@ app.get('/initialize', (req, res) => {
 app.get('/submit', (req, res) => {
   let copyAnswer = answerSequence.slice(0);
   let copyInput = req.query.input.slice(0);
+  console.log('answer: ', copyAnswer);
+  console.log('player: ', copyInput);
   res.send(checkGuess(copyAnswer, copyInput))
 });

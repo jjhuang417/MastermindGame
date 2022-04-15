@@ -38,6 +38,11 @@ const App = () => {
     setPlayerInput(sliced);
   }
 
+  // F(n) to wipe out user input
+  const wipeNum = () => {
+    setPlayerInput([]);
+  }
+
   // F(n) to submit playerInput
   const submitGuess = () => {
     if (playerInput.length === 4) {
@@ -56,7 +61,7 @@ const App = () => {
     }
   }
 
-  console.log(history);
+  console.log('history: ', history);
 
   return (
     <div className='highestDiv'>
@@ -67,15 +72,11 @@ const App = () => {
         <h2>{guess} {guess > 1 ? 'Tries' : 'Try'} Left</h2>
       </div>
       <Numpad
-        playerInput={playerInput}
-        setPlayerInput={setPlayerInput}
+        // playerInput={playerInput}
         addNum={addNum}
         deleteNum={deleteNum}
+        wipeNum={wipeNum}
         submitGuess={submitGuess}
-        guess={guess}
-        setGuess={setGuess}
-        history={history}
-        setHistory={setHistory}
       />
       <GameBoard
         playerInput={playerInput}
