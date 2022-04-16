@@ -36,8 +36,21 @@ body {
   margin-top: 3vh;
 }
 
-.playerInput {
-  margin: 20px;
+.underline {
+  display: flex;
+  flex-direction: row;
+  width: 3vw;
+  height:10vh;
+  border-style: solid;
+  border-width: medium;
+  border-style: solid;
+  border-width: medium;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  justify-content: center;
 }
 
 .sectionTitle {
