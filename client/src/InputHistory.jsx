@@ -8,7 +8,7 @@ const InputHistory = (props) => {
 
   return (
     <div className='historyDiv'>
-        <h2 className='guessHistory'>Guess History</h2>
+        <h2 className='guessHistory'>{props.guess} {props.guess > 1 ? 'Tries' : 'Try'} Left</h2>
       <div className='historyWrap'>
         {
           props.history.map((eachGuess, idx) =>

@@ -99,9 +99,6 @@ const App = () => {
       <div className='titleWrap'>
         <h1 className='title'>Mastermind Game 🔍</h1>
       </div>
-      <div className='guessCounterDiv'>
-        <h2>{guess} {guess > 1 ? 'Tries' : 'Try'} Left</h2>
-      </div>
       <Numpad
         addNum={addNum}
         deleteNum={deleteNum}
@@ -119,6 +116,7 @@ const App = () => {
         <InputHistory
           history={history}
           playerInput={playerInput}
+          guess={guess}
         />
       </div>
       {/* <PopUp
