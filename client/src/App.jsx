@@ -6,7 +6,6 @@ import axios from 'axios';
 import Numpad from './Numpad.jsx';
 import GameBoard from './GameBoard.jsx';
 import InputHistory from './InputHistory.jsx';
-import PopUp from './PopUp.jsx';
 
 const App = () => {
 
@@ -17,6 +16,7 @@ const App = () => {
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
 
+  // Win & Lose conditions
   if (win) {
     alert('CONGRATS!!! YOU DID IT!');
   } else if ((!win && guess < 1)) {
@@ -92,8 +92,6 @@ const App = () => {
     }
   }
 
-  // console.log('history: ', history);
-
   return (
     <div className='highestDiv'>
       <div className='titleWrap'>
@@ -119,10 +117,7 @@ const App = () => {
           guess={guess}
         />
       </div>
-      {/* <PopUp
-        win={win}
-        guess={guess}
-      /> */}
+
     </div>
   )
 };

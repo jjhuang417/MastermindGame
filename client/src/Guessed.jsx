@@ -6,9 +6,9 @@ const Guessed = (props) => {
   let [feedback1, feedback2, feedback3, feedback4] = props.eachGuess.feedback;
 
   // Component for feedbacks
-  const rightSpot = <p>🟢</p>
-  const rightNum = <p>🟡</p>
-  const incorrect = <p>⚫</p>
+  const rightSpot = <h4 className='dots'>🟢</h4>
+  const rightNum = <h4 className='dots'>🟡</h4>
+  const incorrect = <h4 className='dots'>⚫</h4>
 
   // F(n) for dot render
   const dotRender = (feedback) => {
@@ -25,11 +25,17 @@ const Guessed = (props) => {
   return (
     <div className='feedbackDiv'>
       <div className='inputDiv'>
-        <p>{props.eachGuess.num}</p>
-        {dotRender(feedback1)}
-        {dotRender(feedback2)}
-        {dotRender(feedback3)}
-        {dotRender(feedback4)}
+        <p className='guessNum'>{props.eachGuess.num}</p>
+        <div className='col-div'>
+          <div className='row-div'>
+            {dotRender(feedback1)}
+            {dotRender(feedback2)}
+          </div>
+          <div className='row-div'>
+            {dotRender(feedback3)}
+            {dotRender(feedback4)}
+          </div>
+        </div>
       </div>
     </div>
   )
