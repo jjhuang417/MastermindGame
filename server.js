@@ -24,7 +24,7 @@ const getAnswer = async () => {
   let result = await axios.get(intURL);
   answerSequence = result.data.split('\n');
   answerSequence.pop();
-  console.log('answer on start up:', answerSequence);
+  // console.log('answer on start up:', answerSequence);
 };
 
 getAnswer();
@@ -67,8 +67,13 @@ app.get('/initialize', (req, res) => {
 app.get('/submit', (req, res) => {
   let copyAnswer = answerSequence.slice(0);
   let copyInput = req.query.input.slice(0);
-  console.log('answer: ', copyAnswer);
-  console.log('player: ', copyInput);
+  // console.log('answer: ', copyAnswer);
+  // console.log('player: ', copyInput);
   let results = checkGuess(copyAnswer, copyInput);
   res.status(200).send(results);
+});
+
+app.get('/answer', (req, res) => {
+  const joinedAnswer = answerSequence.join('');
+  res.status(200).send(joinedAnswer);
 });

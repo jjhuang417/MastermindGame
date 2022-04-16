@@ -6,14 +6,29 @@ import axios from 'axios';
 import Numpad from './Numpad.jsx';
 import GameBoard from './GameBoard.jsx';
 import InputHistory from './InputHistory.jsx';
+import PopUp from './PopUp.jsx';
 
 const App = () => {
 
   // State
+  const [win, setWin] = useState(false);
   const [sequence, setSequence] = useState('');
   const [guess, setGuess] = useState(10);
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
+
+  if (win) {
+    alert('CONGRATS!!! YOU DID IT!');
+  } else if ((!win && guess < 1)) {
+    axios.get('/answer')
+    .then ((res) => {
+     let answer = res.data;
+      alert(`YOU DIED...Should've guess ${answer}`);
+    })
+    .catch ((err) => {
+      console.log(err);
+    })
+  }
 
   // Get sequence and save as state
   useEffect(() => {
@@ -57,8 +72,19 @@ const App = () => {
           {
             num: playerInput,
             feedback: response.data
-          }]);
+          }
+        ]);
         setGuess(guess - 1);
+        let winNum = 0;
+        for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i] === 'correct') {
+            winNum += 1;
+          }
+          if (winNum === 4) {
+            setWin(true);
+          };
+        }
+        setPlayerInput([]);
       })
       .catch((error) => {
         console.log(error);
@@ -66,7 +92,7 @@ const App = () => {
     }
   }
 
-  console.log('history: ', history);
+  // console.log('history: ', history);
 
   return (
     <div className='highestDiv'>
@@ -81,14 +107,24 @@ const App = () => {
         deleteNum={deleteNum}
         wipeNum={wipeNum}
         submitGuess={submitGuess}
+        win={win}
+        setWin={setWin}
       />
-      <GameBoard
-        playerInput={playerInput}
-      />
-      <InputHistory
-        history={history}
-        playerInput={playerInput}
-      />
+      <div className='centerHistory'>
+        <GameBoard
+          playerInput={playerInput}
+        />
+      </div>
+      <div className='centerHistory'>
+        <InputHistory
+          history={history}
+          playerInput={playerInput}
+        />
+      </div>
+      {/* <PopUp
+        win={win}
+        guess={guess}
+      /> */}
     </div>
   )
 };

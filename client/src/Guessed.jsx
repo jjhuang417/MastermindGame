@@ -1,15 +1,11 @@
 // Framework & Packages
 import React from 'react';
 
-// playerInput is the big numebrs at the top that players put in
-// when submit button is hit, it should put that input into guess history
-
 const Guessed = (props) => {
-
+  // Feedback from the server
   let [feedback1, feedback2, feedback3, feedback4] = props.eachGuess.feedback;
 
-  console.log(props.eachGuess);
-
+  // Component for feedbacks
   const rightSpot = <p>🟢</p>
   const rightNum = <p>🟡</p>
   const incorrect = <p>⚫</p>

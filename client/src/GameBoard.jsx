@@ -4,8 +4,6 @@ const GameBoard = (props) => {
 
   return (
     <div className='gameBoard'>
-      <div className='inputTitle'>
-      </div>
       {props.playerInput.map((int, idx)  => (
         <h1
           className='playerInput'
@@ -17,3 +15,12 @@ const GameBoard = (props) => {
 }
 
 export default GameBoard;
+
+{/* <div className='gameBoard'>
+{props.playerInput.map((int, idx)  => (
+  <h1
+    className='playerInput'
+    key={idx}>{int}
+  </h1>
+))}
+</div> */}
