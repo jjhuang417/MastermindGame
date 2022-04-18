@@ -52,19 +52,6 @@ const App = () => {
     }
   };
 
-  // F(n) to remove a digit
-  const deleteNum = () => {
-    let sliced = playerInput.slice(0, playerInput.length - 1);
-    setPlayerInput(sliced);
-  };
-
-  // F(n) to wipe out user input
-  const clear = () => {
-    setPlayerInput([]);
-  };
-
-  console.log(history);
-
   // F(n) to submit playerInput
   const submitGuess = () => {
     if (playerInput.length === 4) {
@@ -112,11 +99,9 @@ const App = () => {
       </div>
       <Numpad
         addNum={addNum}
-        deleteNum={deleteNum}
-        clear={clear}
+        playerInput={playerInput}
+        onChangeInput={setPlayerInput}
         submitGuess={submitGuess}
-        win={win}
-        setWin={setWin}
       />
       <div className="centerHistory">
         <GameBoard playerInput={playerInput} />
