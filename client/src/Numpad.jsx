@@ -16,9 +16,9 @@ const Numpad = (props) => {
   }
 
   // Wipe player input
-  const handleWipe = (event) => {
+  const handleClear = (event) => {
     event.preventDefault();
-    props.wipeNum();
+    props.clear();
   }
 
   // Submit player guess
@@ -41,7 +41,7 @@ const Numpad = (props) => {
       </div>
       <div className='functionButton'>
         <button className='button-25' onClick={handleDelete}>Delete</button>
-        <button className='button-25' onClick={handleWipe}>Reset Input</button>
+        <button className='button-25' onClick={handleClear}>Clear</button>
         <button className='button-25' onClick={handleSubmit}>Submit</button>
       </div>
     </div>

@@ -3,7 +3,7 @@ import React from 'react';
 
 const Guessed = (props) => {
   // Feedback from the server
-  let [feedback1, feedback2, feedback3, feedback4] = props.eachGuess.feedback;
+  let [feedback1, feedback2, feedback3, feedback4] = props.eachGuess.response;
 
   // Component for feedbacks
   const rightSpot = <h4 className='dots'>🟢</h4>

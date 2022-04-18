@@ -15,6 +15,8 @@ const App = () => {
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
 
+  let tries = 10 - history.length;
+
   // Win & Lose conditions
   if (win) {
     alert("CONGRATS!!! YOU DID IT!");
@@ -43,8 +45,6 @@ const App = () => {
       });
   }, []);
 
-  console.log(sequence);
-
   // F(n) to add number
   const addNum = (num) => {
     if (playerInput.length < 4) {
@@ -59,54 +59,61 @@ const App = () => {
   };
 
   // F(n) to wipe out user input
-  const wipeNum = () => {
+  const clear = () => {
     setPlayerInput([]);
   };
+
+  console.log(history);
 
   // F(n) to submit playerInput
   const submitGuess = () => {
     if (playerInput.length === 4) {
-      axios
-        .get("/submit", {
-          params: {
-            input: playerInput,
-          },
-        })
-        .then((response) => {
-          setHistory([
-            ...history,
-            {
-              num: playerInput,
-              feedback: response.data,
-            },
-          ]);
-          setGuess(guess - 1);
-          let winNum = 0;
-          for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i] === "correct") {
-              winNum += 1;
-            }
-            if (winNum === 4) {
-              setWin(true);
-            }
-          }
-          setPlayerInput([]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      let feedback = guessCheck(sequence, playerInput);
+      setHistory([...history, {
+        num: playerInput,
+        response: feedback
+      }]);
+      setPlayerInput([]);
     }
+  };
+
+  // F(n) to check guess
+  const guessCheck = (answer, guess) => {
+    let copyAnswer = answer.slice(0); // make copies for data manipulation
+    let copyGuess = guess.slice(0);
+    let feedback = []; // final resutls
+    for (let i = 0; i < copyGuess.length; i++) {
+      const guessNum = copyGuess[i]; // the current number
+      const answerIndex = copyAnswer.indexOf(guessNum); // the index of the number if it exists in the answer arr
+
+      if (guessNum === copyAnswer[i]) {
+        copyAnswer[i] = -1;
+        feedback.push("correct");
+        continue;
+      }
+
+      if (answerIndex !== -1) {
+        copyAnswer[answerIndex] = -1;
+        feedback.push("partial");
+        continue;
+      }
+
+      feedback.push("wrong");
+    }
+    feedback.sort();
+    return feedback;
   };
 
   return (
     <div className="highestDiv">
       <div className="titleWrap">
-        <h1 className="title">Mastermind Game 🔍</h1>
+        <h1 className="title">Mastermind</h1>
+        <h1>{sequence}</h1>
       </div>
       <Numpad
         addNum={addNum}
         deleteNum={deleteNum}
-        wipeNum={wipeNum}
+        clear={clear}
         submitGuess={submitGuess}
         win={win}
         setWin={setWin}
@@ -118,7 +125,7 @@ const App = () => {
         <InputHistory
           history={history}
           playerInput={playerInput}
-          guess={guess}
+          tries={tries}
         />
       </div>
     </div>

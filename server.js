@@ -24,7 +24,7 @@ app.get("/initialize", (req, res) => {
     .then((response) => {
       let code = response.data;
       code = code.split("\n");
-      code = 
+      code.pop();
       res.status(200).send(code);
     })
     .catch((err) => {
