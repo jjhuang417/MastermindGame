@@ -1,7 +1,16 @@
 // Framework & Packages
-import React from "react";
+import React, { useRef } from "react";
 
 const Numpad = (props) => {
+  // Allow input change
+  const handleInput = (event) => {
+    event.preventDefault();
+    if (!isNaN(parseInt(event.nativeEvent.data)) && Number(event.nativeEvent.data) >= 0 && Number(event.nativeEvent.data) <= 7) {
+      console.log(event.nativeEvent.data);
+      props.addNum(event.nativeEvent.data);
+    }
+  };
+
   // Adding numbers
   const handleAdd = (event) => {
     event.preventDefault();
@@ -17,7 +26,7 @@ const Numpad = (props) => {
   // Wipe player input
   const handleClear = (event) => {
     event.preventDefault();
-    props.onChangeInput([])
+    props.onChangeInput([]);
   };
 
   // Submit player guess
@@ -28,6 +37,14 @@ const Numpad = (props) => {
 
   return (
     <div name="numPadWrap" className="numPadWrap">
+      <label>Code</label>
+      <input
+        className="underlineInput"
+        maxLength="4"
+        minLength="4"
+        onChange={handleInput}
+        value={props.playerInput.join("")}
+      ></input>
       <div className="functionButton">
         <button
           className="button-22"

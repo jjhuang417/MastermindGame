@@ -95,7 +95,6 @@ const App = () => {
     <div className="highestDiv">
       <div className="titleWrap">
         <h1 className="title">Mastermind</h1>
-        <h1>{sequence}</h1>
       </div>
       <Numpad
         addNum={addNum}
