@@ -2,11 +2,16 @@
 import React, { useRef } from "react";
 
 const Numpad = (props) => {
+  const num = ["0", "1", "2", "3", "4", "5", "6", "7"];
+
   // Allow input change
   const handleInput = (event) => {
     event.preventDefault();
-    if (!isNaN(parseInt(event.nativeEvent.data)) && Number(event.nativeEvent.data) >= 0 && Number(event.nativeEvent.data) <= 7) {
-      console.log(event.nativeEvent.data);
+    if (
+      !isNaN(parseInt(event.nativeEvent.data)) &&
+      Number(event.nativeEvent.data) >= 0 &&
+      Number(event.nativeEvent.data) <= 7
+    ) {
       props.addNum(event.nativeEvent.data);
     }
   };
@@ -18,14 +23,12 @@ const Numpad = (props) => {
   };
 
   // Delete numbers
-  const handleDelete = (event) => {
-    event.preventDefault();
+  const handleDelete = () => {
     props.onChangeInput(props.playerInput.slice(0, -1));
   };
 
   // Wipe player input
-  const handleClear = (event) => {
-    event.preventDefault();
+  const handleClear = () => {
     props.onChangeInput([]);
   };
 
@@ -35,81 +38,34 @@ const Numpad = (props) => {
     props.submitGuess();
   };
 
+  // Handle key down
+  const handleKeyDown = (event) => {
+    if (event.code === "Backspace") {
+      handleDelete();
+    }
+  };
+
+  // Handle key press
+  const handleKeyPress = (event) => {
+    if (event.code === "Enter") {
+      handleSubmit(event);
+    }
+  };
+
   return (
     <div name="numPadWrap" className="numPadWrap">
-      <label>Code</label>
-      <input
-        className="underlineInput"
-        maxLength="4"
-        minLength="4"
-        onChange={handleInput}
-        value={props.playerInput.join("")}
-      ></input>
       <div className="functionButton">
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="0"
-        >
-          0
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="1"
-        >
-          1
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="2"
-        >
-          2
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="3"
-        >
-          3
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="4"
-        >
-          4
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="5"
-        >
-          5
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="6"
-        >
-          6
-        </button>
-        <button
-          className="button-22"
-          onClick={handleAdd}
-          type="button"
-          value="7"
-        >
-          7
-        </button>
+        {num.map((n, idx) => (
+          <button
+            key={idx}
+            className="button-22"
+            onClick={handleAdd}
+            type="button"
+            value={n}
+          >
+            {n}
+          </button>
+        ))}
       </div>
       <div className="functionButton">
         <button className="button-25" onClick={handleDelete}>
@@ -122,6 +78,15 @@ const Numpad = (props) => {
           Submit
         </button>
       </div>
+      <input
+        className="underlineInput"
+        maxLength="4"
+        minLength="4"
+        onKeyDown={handleKeyDown}
+        onChange={handleInput}
+        onKeyPress={handleKeyPress}
+        value={props.playerInput.join("")}
+      ></input>
     </div>
   );
 };

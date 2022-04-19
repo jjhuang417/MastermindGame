@@ -2,42 +2,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-// Componenet import
+// Component import
 import Numpad from "./Numpad.jsx";
-import GameBoard from "./GameBoard.jsx";
 import InputHistory from "./InputHistory.jsx";
+import Modal from "./Modal.jsx";
 
 const App = () => {
   // State
-  const [win, setWin] = useState(false);
-  const [sequence, setSequence] = useState("");
+  const [sequence, setSequence] = useState([]);
   const [guess, setGuess] = useState(10);
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
+  const [modal, setModal] = useState(false);
 
   let tries = 10 - history.length;
-
-  // Win & Lose conditions
-  if (win) {
-    alert("CONGRATS!!! YOU DID IT!");
-  } else if (!win && guess < 1) {
-    axios
-      .get("/answer")
-      .then((res) => {
-        let answer = res.data;
-        alert(`YOU DIED...Should've guess ${answer}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   // Get sequence and save as state
   useEffect(() => {
     axios
       .get("/initialize")
       .then((res) => {
-        console.log("Game Start");
         setSequence(res.data);
       })
       .catch((err) => {
@@ -54,33 +38,47 @@ const App = () => {
 
   // F(n) to submit playerInput
   const submitGuess = () => {
-    if (playerInput.length === 4) {
+    if (playerInput.length === 4 && tries > 0) {
       let feedback = guessCheck(sequence, playerInput);
-      setHistory([...history, {
-        num: playerInput,
-        response: feedback
-      }]);
-      setPlayerInput([]);
+      setHistory([
+        ...history,
+        {
+          num: playerInput,
+          response: feedback,
+        },
+      ]);
+
+      if (
+        playerInput?.join("") === sequence?.join("") ||
+        (tries === 1 && playerInput?.join("") !== sequence?.join(""))
+      ) {
+        setModal(true);
+        console.log(modal);
+      } else {
+        setPlayerInput([]);
+      }
     }
   };
 
   // F(n) to check guess
   const guessCheck = (answer, guess) => {
-    let copyAnswer = answer.slice(0); // make copies for data manipulation
     let copyGuess = guess.slice(0);
     let feedback = []; // final resutls
-    for (let i = 0; i < copyGuess.length; i++) {
-      const guessNum = copyGuess[i]; // the current number
-      const answerIndex = copyAnswer.indexOf(guessNum); // the index of the number if it exists in the answer arr
 
-      if (guessNum === copyAnswer[i]) {
-        copyAnswer[i] = -1;
+    for (let i = 0; i < copyGuess.length; i++) {
+      const answerNum = answer[i]; // the current number
+      const guessIndex = copyGuess.indexOf(answerNum); // the index of the number if it exists in the answer arr
+
+      // Checking for the right spot and right number
+      if (answerNum === copyGuess[i]) {
+        copyGuess[i] = -1;
         feedback.push("correct");
         continue;
       }
 
-      if (answerIndex !== -1) {
-        copyAnswer[answerIndex] = -1;
+      // Checking for partial matches
+      if (guessIndex !== -1) {
+        copyGuess[guessIndex] = -1;
         feedback.push("partial");
         continue;
       }
@@ -89,6 +87,10 @@ const App = () => {
     }
     feedback.sort();
     return feedback;
+  };
+
+  const closeModal = () => {
+    setModal(false);
   };
 
   return (
@@ -103,15 +105,20 @@ const App = () => {
         submitGuess={submitGuess}
       />
       <div className="centerHistory">
-        <GameBoard playerInput={playerInput} />
-      </div>
-      <div className="centerHistory">
         <InputHistory
           history={history}
           playerInput={playerInput}
           tries={tries}
         />
       </div>
+      {modal ? (
+        <Modal
+          sequence={sequence}
+          playerInput={playerInput}
+          closeModal={closeModal}
+          tries={tries}
+        />
+      ) : null}
     </div>
   );
 };

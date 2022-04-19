@@ -5,7 +5,7 @@ const Guessed = (props) => {
   // Feedback from the server
   let [feedback1, feedback2, feedback3, feedback4] = props.eachGuess.response;
 
-  // Component for feedbacks
+  // DOM elements for feedbacks
   const rightSpot = <h4 className='dots'>🟢</h4>
   const rightNum = <h4 className='dots'>🟡</h4>
   const incorrect = <h4 className='dots'>⚫</h4>

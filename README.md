@@ -31,4 +31,17 @@ Engineering Journal
 4/15/22
 - Encountered a bug where the server was sending back the wrong feedback. It would turn all 'partial' into wrongs.
 - Originally I was sneding back the feedbacks without first saving it into a variable. After saving it into a variable and then sending it, it was finally outputting the right resutls.
+
+4/16/22
+- Implementing styling and modal
+
+4/17/22
+- Refactoring most of the application from answer checking on the backend to the frontend.
+
+4/18/22
+- Implemented win conditions.
+- While implementing lose condition, tried to pop out modal when tries is equal to 0. However, I ran into an issue with the way setting state is asynchronous. Number of tries is based off of the length of the history state, but that part of the function is synchronous. While setting history is asynchronous, the logic to evaluate the lose condition was activating based on tries prior to setting history.
+
+4/19/22
+- Need to look into cookie to store how many games won.
 - 
