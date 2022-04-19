@@ -1,5 +1,5 @@
 // Framework & Packages
-import React, { useRef } from "react";
+import React from "react";
 
 const Numpad = (props) => {
   const num = ["0", "1", "2", "3", "4", "5", "6", "7"];
