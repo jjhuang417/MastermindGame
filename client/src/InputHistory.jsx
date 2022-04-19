@@ -14,7 +14,7 @@ const InputHistory = (props) => {
       </div>
       <div className="historyWrap">
         {props.history.map((eachGuess, idx) => (
-          <Guessed eachGuess={eachGuess} key={idx}/>
+          <Guessed eachGuess={eachGuess} key={idx} />
         ))}
       </div>
     </div>

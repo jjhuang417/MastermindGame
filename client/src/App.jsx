@@ -23,7 +23,7 @@ const App = () => {
       .get("/initialize")
       .then((res) => {
         setSequence(res.data);
-        getFocus()
+        getFocus();
       })
       .catch((err) => {
         console.log(err);
