@@ -79,6 +79,7 @@ const Numpad = (props) => {
         </button>
       </div>
       <input
+        id="playerInputField"
         className="underlineInput"
         maxLength="4"
         minLength="4"
@@ -86,6 +87,7 @@ const Numpad = (props) => {
         onChange={handleInput}
         onKeyPress={handleKeyPress}
         value={props.playerInput.join("")}
+        autofocus
       ></input>
     </div>
   );

@@ -23,6 +23,7 @@ const App = () => {
       .get("/initialize")
       .then((res) => {
         setSequence(res.data);
+        getFocus()
       })
       .catch((err) => {
         console.log(err);
@@ -89,8 +90,14 @@ const App = () => {
     return feedback;
   };
 
+  // Close the modal
   const closeModal = () => {
     setModal(false);
+  };
+
+  // Auto focus the input field on page load
+  const getFocus = () => {
+    document.getElementById("playerInputField").focus();
   };
 
   return (
