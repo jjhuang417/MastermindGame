@@ -1,8 +1,15 @@
-<img src='Mastermind.png'>
+<img src='./readmeImages/Mastermind.png'>
 
 ## Description
 
 This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. The player will be playing against the mastermind who has chosen a 4 number sequence. To defeat the mastermind, you will have to guess this code and save yourself.
+
+## How do I use this?
+
+1. Install dependencies: `npm install`
+2. Start the node server: `npm run server`
+3. Open up a new terminal and run webpack: `npm run build`
+4. Open the app at http://localhost:3000.
 
 ## Rules
 
@@ -11,12 +18,14 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 - After each guess, one of the 3 response below can happen for each number:<br> 1. A green dot (🟢) indicates a correct number is in the right location.<br>2. A yellow dot (🟡) indicates a correct number but not in the right location. <br>3. A black dot (⚫) indicates that a number is incorrect.
 - Keep in mind that the position of the dots does not align with the positions of the numbers in the guess.
 
-## How do I use this?
+## Thought Process
+1. My first step was to design a wireframe for my game and think of all the pieces I would need in order to make this game functional.
+<img src='./readmeImages/wireframeAdjusted.png'>
 
-1. Install dependencies: `npm install`
-2. Start the node server: `npm run server`
-3. Open up a new terminal and run webpack: `npm run build`
-4. Open the app at http://localhost:3000.
+2. I chose React.js for this project because I like how fast, efficient, modular you can be with it. I then designed the component hierarchy, helping me visualize how components will be mounted and how data will flow.
+<img src='./readmeImages/components.png'>
+
+3. 
 
 ## Tech Stack
 
