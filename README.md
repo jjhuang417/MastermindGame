@@ -1,3 +1,32 @@
+<img src='Mastermind.png'>
+
+## Description
+
+This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. The player will be playing against the mastermind who has chosen a 4 number sequence. To defeat the mastermind, you will have to guess this code and save yourself.
+
+## Rules
+
+- The player will have 10 tries to guess the correct 4 number code.
+- Each number in the code ranges from 0 - 7 and ***CAN*** contain duplicates.
+- After each guess, one of the 3 response below can happen for each number:<br> 1. A green dot (🟢) indicates a correct number is in the right location.<br>2. A yellow dot (🟡) indicates a correct number but not in the right location. <br>3. A black dot (⚫) indicates that a number is incorrect.
+- Keep in mind that the position of the dots does not align with the positions of the numbers in the guess.
+
+## How do I use this?
+
+1. Install dependencies: `npm install`
+2. Start the node server: `npm run server`
+3. Open up a new terminal and run webpack: `npm run build`
+4. Open the app at http://localhost:3000.
+
+## Tech Stack
+
+- React.js
+- Node.js
+- Express.js
+
+## Demo
+
+
 Mastermind Game
 1. Fork repo
 2. Run npm install
@@ -43,5 +72,5 @@ Engineering Journal
 - While implementing lose condition, tried to pop out modal when tries is equal to 0. However, I ran into an issue with the way setting state is asynchronous. Number of tries is based off of the length of the history state, but that part of the function is synchronous. While setting history is asynchronous, the logic to evaluate the lose condition was activating based on tries prior to setting history.
 
 4/19/22
-- Need to look into cookie to store how many games won.
-- 
+- Implemented score tracking via local storage.
+- Implemented a feature to focus onto the input when the page refresh.
