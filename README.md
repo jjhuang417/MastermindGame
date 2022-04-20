@@ -4,6 +4,8 @@
 
 This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. The player will be playing against the mastermind who has chosen a 4 number sequence. To defeat the mastermind, you will have to guess this code and save yourself.
 
+<img src='./readmeImages/appPic.png'>
+
 ## How do I use this?
 
 1. Install dependencies: `npm install`
@@ -35,7 +37,7 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 
 7. Modal.jsx is a simple pop up modal that appears when the player reaches either the winning or losing condition. The winning and losing condition is housed inside the guess submission function; the moment when a user submits an answer, whether or not a game ends is checked.
 
-8. The InputHistory.jsx component contains the history of all the guesses the player has attempted. The Guessed component is mounted onto this one.
+8. The InputHistory.jsx component contains the history of all the guesses the player has attempted. The Guessed component is mounted onto this one. In addition, the number of tries left is displayed in this component.
 
 9. The Guessed.jsx component contains player's guess and the from the answer checking algorithm. The number and feedbacks are set as state, and each time a guess is entered, a re-render happens to update the page.
 
@@ -47,5 +49,3 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 - React.js
 - Node.js
 - Express.js
-
-## Demo
