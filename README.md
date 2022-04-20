@@ -19,13 +19,28 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 - Keep in mind that the position of the dots does not align with the positions of the numbers in the guess.
 
 ## Thought Process
-1. My first step was to design a wireframe for my game and think of all the pieces I would need in order to make this game functional.
+1. My first step was to design a wireframe for my app and think of all the pieces I would need to make this game functional.
 <img src='./readmeImages/wireframeAdjusted.png'>
 
-2. I chose React.js for this project because I like how fast, efficient, modular you can be with it. I then designed the component hierarchy, helping me visualize how components will be mounted and how data will flow.
+2. I chose React.js for this project because I like the speed, efficiency, and modularity it provides. I then designed the component hierarchy, this helped me visualize how components will be mounted and the data flow.
 <img src='./readmeImages/components.png'>
 
-3. 
+3. I started by creating the server and this is where I made requests to the random number API and then transform the response into the right data structure for the client. I had the server reshape the data because I wanted to modularize my process and didn't want my front end to handle all the load.
+
+4. After creating my 2 diagrams, I wanted to create a basic UI first so I could start implementing the game logic. I started with the top level component, App.jsx.
+
+5. App.jsx is the component where I made a request to the server to hit the random number API to get the code. After the code is retrieved, I pass the number sequence down to other components as props.
+
+6. Numpad.jsx handles all of the button functionalities as well as the input field. The number buttons show the user that the inputs can only range from 0 - 7. Users can use buttons to play the game as well as directly type the sequence into the input field.
+
+7. Modal.jsx is a simple pop up modal that appears when the player reaches either the winning or losing condition. The winning and losing condition is housed inside the guess submission function; the moment when a user submits an answer, whether or not a game ends is checked.
+
+8. The InputHistory.jsx component contains the history of all the guesses the player has attempted. The Guessed component is mounted onto this one.
+
+9. The Guessed.jsx component contains player's guess and the from the answer checking algorithm. The number and feedbacks are set as state, and each time a guess is entered, a re-render happens to update the page.
+
+## Extensions
+- **Score Keeper**: for this extension, I decided to implement a score keeper that would allow numbers of wins and games played to persist. I used window's localStorage property to store data across browser sessions. Everytime a game ends, the information is saved. If the browser was closed, the data would still persist. I thought about using an external database like Firebase but due to time constraints, localStorage does the job and was quicker for implementation.
 
 ## Tech Stack
 
@@ -34,52 +49,3 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 - Express.js
 
 ## Demo
-
-
-Mastermind Game
-1. Fork repo
-2. Run npm install
-
-Engineering Journal
-
-4/11/22
-- Created the todo.txt
-
-4/12/22
-- Made the API call from the server to get the sequence.
-- The API provided the sequence as a string with line breaks.
-- I split the string to turn it into an array and popped off the last line break.
-- Made an API call from the front end to get the sequence from the server.
-
-4/13/22
-- I need to save the random sequence as a variable so I can freely use it in the rest of my code.
-- I need to handle the asynchronous nature of the API call.
-- I used async / await to ensure the API call results are saved into my global variable.
-- Now I can use the answerSequence to create game logic.
-
-4/14/22
-- Create functionality for the front end Enter button. Make a request to hit the submit route.
-- Send the userInput array to the route
-- Use a loop & 2 pointers to check against answer arr.
-- Initialize 2 counter to check for characters that match and characters that are same but dont match location.
-- Send back an object containing data to signal the guess results.
-- Was using postman to test the route, i was getting wrecked by the data type comparison.
-- I needed an array but the request was stringifying everything. I had to modify it to an actual array.
-
-4/15/22
-- Encountered a bug where the server was sending back the wrong feedback. It would turn all 'partial' into wrongs.
-- Originally I was sneding back the feedbacks without first saving it into a variable. After saving it into a variable and then sending it, it was finally outputting the right resutls.
-
-4/16/22
-- Implementing styling and modal
-
-4/17/22
-- Refactoring most of the application from answer checking on the backend to the frontend.
-
-4/18/22
-- Implemented win conditions.
-- While implementing lose condition, tried to pop out modal when tries is equal to 0. However, I ran into an issue with the way setting state is asynchronous. Number of tries is based off of the length of the history state, but that part of the function is synchronous. While setting history is asynchronous, the logic to evaluate the lose condition was activating based on tries prior to setting history.
-
-4/19/22
-- Implemented score tracking via local storage.
-- Implemented a feature to focus onto the input when the page refresh.

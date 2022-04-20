@@ -1,21 +1,43 @@
-To Do's
+Engineering Journal
 
-API - DONE
-- Figure out how to use the API to generate random sequence of 4 numbers from 0 - 7.
+4/11/22
+- Created the todo.txt
 
-Client Side
-- Need to create the User Interface of the application.
-  + Title
-  + The game board
-  + Numpad for inputting the player response.
-  + Message telling the player one of the 3
-    - The player had guess a correct integer
-    - The player had guessed a correct number and its correct location
-    - The player's guess was incorrect
+4/12/22
+- Made the API call from the server to get the sequence.
+- The API provided the sequence as a string with line breaks.
+- I split the string to turn it into an array and popped off the last line break.
+- Made an API call from the front end to get the sequence from the server.
 
-Server Side
-- Need to make API to get the numbers sequence
-- Implement game logic
-  + Need to match player inputs and come up with 3 responses
-- Will probably need to use express router for cleaner looking structure.
-- 
+4/13/22
+- I need to save the random sequence as a variable so I can freely use it in the rest of my code.
+- I need to handle the asynchronous nature of the API call.
+- I used async / await to ensure the API call results are saved into my global variable.
+- Now I can use the answerSequence to create game logic.
+
+4/14/22
+- Create functionality for the front end Enter button. Make a request to hit the submit route.
+- Send the userInput array to the route
+- Use a loop & 2 pointers to check against answer arr.
+- Initialize 2 counter to check for characters that match and characters that are same but dont match location.
+- Send back an object containing data to signal the guess results.
+- Was using postman to test the route, i was getting wrecked by the data type comparison.
+- I needed an array but the request was stringifying everything. I had to modify it to an actual array.
+
+4/15/22
+- Encountered a bug where the server was sending back the wrong feedback. It would turn all 'partial' into wrongs.
+- Originally I was sneding back the feedbacks without first saving it into a variable. After saving it into a variable and then sending it, it was finally outputting the right resutls.
+
+4/16/22
+- Implementing styling and modal
+
+4/17/22
+- Refactoring most of the application from answer checking on the backend to the frontend.
+
+4/18/22
+- Implemented win conditions.
+- While implementing lose condition, tried to pop out modal when tries is equal to 0. However, I ran into an issue with the way setting state is asynchronous. Number of tries is based off of the length of the history state, but that part of the function is synchronous. While setting history is asynchronous, the logic to evaluate the lose condition was activating based on tries prior to setting history.
+
+4/19/22
+- Implemented score tracking via local storage.
+- Implemented a feature to focus onto the input when the page refresh.

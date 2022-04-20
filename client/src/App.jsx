@@ -10,7 +10,6 @@ import Modal from "./Modal.jsx";
 const App = () => {
   // State
   const [sequence, setSequence] = useState([]);
-  const [guess, setGuess] = useState(10);
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
   const [modal, setModal] = useState(false);
@@ -29,7 +28,7 @@ const App = () => {
         console.log(err);
       });
   }, []);
-console.log(sequence);
+
   // F(n) to add number
   const addNum = (num) => {
     if (playerInput.length < 4) {
