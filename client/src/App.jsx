@@ -24,7 +24,6 @@ const App = () => {
       .then((res) => {
         setSequence(res.data);
         getFocus();
-        // localStorage.clear();
       })
       .catch((err) => {
         console.log(err);
@@ -103,15 +102,23 @@ console.log(sequence);
 
   // F(n) to track numbers of wins & total games played via local storage
   const trackWins = (isItCorrect) => {
-    if (isItCorrect && !storedTotal) {
+    // wrong and first time playing
+    if (!isItCorrect && !localStorage.total) {
+      localStorage.total = 1;
+    // wrong and not first time
+    } else if (!isItCorrect && localStorage.total) {
+      localStorage.total = Number(localStorage.total) + 1;
+    // right and first time playing
+    } else if (isItCorrect && !localStorage.total) {
       localStorage.wins = 1;
       localStorage.total = 1;
-    } else if (isItCorrect && localStorage.total) {
-      localStorage.wins = Number(localStorage.wins) + 1;
+    // right and first time winning
+    } else if (isItCorrect && !localStorage.wins) {
+      localStorage.wins = 1;
       localStorage.total = Number(localStorage.total) + 1;
-    } else if (isItCorrect && !localStorage.total) {
-      localStorage.total = 1;
     } else {
+    // right and not first time
+      localStorage.wins = Number(localStorage.wins) + 1;
       localStorage.total = Number(localStorage.total) + 1;
     }
   };
@@ -120,11 +127,6 @@ console.log(sequence);
     <div className="highestDiv">
       <div className="titleWrap">
         <h1>Mastermind</h1>
-      </div>
-      <div className="scoreWrap">
-        <h2 className="scoreText">
-          Wins: {localStorage.wins ? localStorage.wins : 0}/{localStorage.total ? localStorage.total : 0}
-        </h2>
       </div>
       <Numpad
         addNum={addNum}
@@ -138,6 +140,11 @@ console.log(sequence);
           playerInput={playerInput}
           tries={tries}
         />
+      </div>
+      <div className="scoreWrap">
+        <h2 className="scoreText">
+          Wins: {localStorage.wins ? localStorage.wins : 0}/{localStorage.total ? localStorage.total : 0}
+        </h2>
       </div>
       {modal ? (
         <Modal
