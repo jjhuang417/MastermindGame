@@ -24,18 +24,22 @@ const App = () => {
       .then((res) => {
         setSequence(res.data);
         getFocus();
+        // localStorage.clear();
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
+console.log(sequence);
   // F(n) to add number
   const addNum = (num) => {
     if (playerInput.length < 4) {
       setPlayerInput([...playerInput, num]);
     }
   };
+
+  // Does guess equal to answer
+  const isItCorrect = playerInput?.join("") === sequence?.join("");
 
   // F(n) to submit playerInput
   const submitGuess = () => {
@@ -49,12 +53,9 @@ const App = () => {
         },
       ]);
 
-      if (
-        playerInput?.join("") === sequence?.join("") ||
-        (tries === 1 && playerInput?.join("") !== sequence?.join(""))
-      ) {
+      if (isItCorrect || (tries === 1 && !isItCorrect)) {
         setModal(true);
-        console.log(modal);
+        trackWins(isItCorrect);
       } else {
         setPlayerInput([]);
       }
@@ -100,10 +101,30 @@ const App = () => {
     document.getElementById("playerInputField").focus();
   };
 
+  // F(n) to track numbers of wins & total games played via local storage
+  const trackWins = (isItCorrect) => {
+    if (isItCorrect && !storedTotal) {
+      localStorage.wins = 1;
+      localStorage.total = 1;
+    } else if (isItCorrect && localStorage.total) {
+      localStorage.wins = Number(localStorage.wins) + 1;
+      localStorage.total = Number(localStorage.total) + 1;
+    } else if (isItCorrect && !localStorage.total) {
+      localStorage.total = 1;
+    } else {
+      localStorage.total = Number(localStorage.total) + 1;
+    }
+  };
+
   return (
     <div className="highestDiv">
       <div className="titleWrap">
-        <h1 className="title">Mastermind</h1>
+        <h1>Mastermind</h1>
+      </div>
+      <div className="scoreWrap">
+        <h2 className="scoreText">
+          Wins: {localStorage.wins ? localStorage.wins : 0}/{localStorage.total ? localStorage.total : 0}
+        </h2>
       </div>
       <Numpad
         addNum={addNum}

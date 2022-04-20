@@ -87,7 +87,6 @@ const Numpad = (props) => {
         onChange={handleInput}
         onKeyPress={handleKeyPress}
         value={props.playerInput.join("")}
-        autofocus
       ></input>
     </div>
   );

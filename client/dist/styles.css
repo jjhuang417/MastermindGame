@@ -7,6 +7,15 @@ body {
   justify-content: center;
 }
 
+.scoreWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.scoreText {
+  text-align: center;
+}
+
 .guessCounterDiv {
   display: flex;
   justify-content: center;

@@ -14,7 +14,7 @@ const Modal = (props) => {
           </button>
         </div>
         {props.playerInput?.join("") === props.sequence?.join("") ? (
-          <h3 className="gameTxt">CONGRATS! YOU BEAT THE MASTERMIND</h3>
+          <h3 className="gameTxt">CONGRATS! YOU BEAT THE MASTERMIND.</h3>
         ) : (
           <h3 className="gameTxt">
             YOU DIED...SHOULD'VE GUESSED {props.sequence}
