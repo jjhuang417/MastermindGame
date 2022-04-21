@@ -31,18 +31,19 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 
 4. After creating my 2 diagrams, I wanted to create a basic UI first so I could start implementing the game logic. I started with the top level component, App.jsx.
 
-5. App.jsx is the component where I made a request to the server to hit the random number API to get the code. After the code is retrieved, I pass the number sequence down to other components as props.
+5. **App.jsx** is the component where I made a request to the server to hit the random number API to get the code. After the code is retrieved, I pass the number sequence down to other components as props.
 
-6. Numpad.jsx handles all of the button functionalities as well as the input field. The number buttons show the user that the inputs can only range from 0 - 7. Users can use buttons to play the game as well as directly type the sequence into the input field.
+6. **Numpad.jsx** handles all of the button functionalities as well as the input field. The number buttons show the user that the inputs can only range from 0 - 7. Users can use buttons to play the game as well as directly type the sequence into the input field.
 
-7. Modal.jsx is a simple pop up modal that appears when the player reaches either the winning or losing condition. The winning and losing condition is housed inside the guess submission function; the moment when a user submits an answer, whether or not a game ends is checked.
+7. **Modal.jsx** is a simple pop up modal that appears when the player reaches either the winning or losing condition. The winning and losing condition is housed inside the guess submission function; the moment when a user submits an answer, whether or not a game ends is checked.
 
-8. The InputHistory.jsx component contains the history of all the guesses the player has attempted. The Guessed component is mounted onto this one. In addition, the number of tries left is displayed in this component.
+8. The **InputHistory.jsx** component contains the history of all the guesses the player has attempted. The Guessed component is mounted onto this one. In addition, the number of tries left is displayed in this component.
 
-9. The Guessed.jsx component contains player's guess and the from the answer checking algorithm. The number and feedbacks are set as state, and each time a guess is entered, a re-render happens to update the page.
+9. The **Guessed.jsx** component contains player's guess and the from the answer checking algorithm. The number and feedbacks are set as state, and each time a guess is entered, a re-render happens to update the page.
 
 ## Extensions
 - **Score Keeper**: for this extension, I decided to implement a score keeper that would allow numbers of wins and games played to persist. I used window's localStorage property to store data across browser sessions. Everytime a game ends, the information is saved. If the browser was closed, the data would still persist. I thought about using an external database like Firebase but due to time constraints, localStorage does the job and was quicker for implementation.
+- **Tests**: I attemped to write some tests for my application because I read about Test Driven Development and have always wanted to learn how to write tests. This will not only help with catching bugs but also make the code easier to maintain. However, I was not able to complete this extension on time.
 
 ## Tech Stack
 

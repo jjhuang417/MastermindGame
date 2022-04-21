@@ -17,9 +17,14 @@ app.listen(port, (req, res) => {
 
 // Endpoint for page initial render
 app.get("/initialize", (req, res) => {
+  fetchCode(req, res);
+});
+
+// F(n) to fetch code
+const fetchCode = async (req, res) => {
   let intURL =
     "https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new";
-  axios
+  await axios
     .get(intURL)
     .then((response) => {
       let code = response.data;
@@ -30,4 +35,6 @@ app.get("/initialize", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-});
+};
+
+exports.fetchCode = fetchCode;
