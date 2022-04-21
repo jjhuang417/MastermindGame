@@ -2,6 +2,23 @@
 const express = require("express");
 const axios = require("axios");
 
+// F(n) to fetch code
+const fetchCode = (req, res) => {
+  let intURL =
+    "https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new";
+  axios
+    .get(intURL)
+    .then((response) => {
+      let code = response.data;
+      code = code.split("\n");
+      code.pop();
+      res.status(200).send(code);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // App & Port
 const app = express();
 const port = 3000;
@@ -16,25 +33,6 @@ app.listen(port, (req, res) => {
 });
 
 // Endpoint for page initial render
-app.get("/initialize", (req, res) => {
-  fetchCode(req, res);
-});
+app.get("/initialize", fetchCode);
 
-// F(n) to fetch code
-const fetchCode = async (req, res) => {
-  let intURL =
-    "https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new";
-  await axios
-    .get(intURL)
-    .then((response) => {
-      let code = response.data;
-      code = code.split("\n");
-      code.pop();
-      res.status(200).send(code);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-exports.fetchCode = fetchCode;
+module.exports = app;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1650569657888" clover="3.2.0">
+  <project timestamp="1650569657888" name="All files">
+    <metrics statements="18" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3" elements="22" coveredelements="20" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1"/>
+    <file name="server.js" path="/Users/Soft/work/MastermindGame/server.js">
+      <metrics statements="18" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="8" count="3" type="stmt"/>
+      <line num="9" count="3" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+      <line num="15" count="3" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="38" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
