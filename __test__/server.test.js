@@ -1,9 +1,12 @@
+// Frameworks & Libraries
 const request = require('supertest');
 const express = require("express");
 const axios = require('axios');
 
+// Express app object
 const app = require('../server.js');
 
+// The tests to check the response from the initialize route.
 describe("Fetch an array of 4 elements when the initialize route is hit", () => {
   test("The response is an array.", done => {
   request(app) // Finds location of that express server and uses the app to make a get request.

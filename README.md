@@ -43,7 +43,7 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 
 ## Extensions
 - **Score Keeper**: for this extension, I decided to implement a score keeper that would allow numbers of wins and games played to persist. I used window's localStorage property to store data across browser sessions. Everytime a game ends, the information is saved. If the browser was closed, the data would still persist. I thought about using an external database like Firebase but due to time constraints, localStorage does the job and was quicker for implementation.
-- **Tests**: I attemped to write some tests for my application because I read about Test Driven Development and have always wanted to learn how to write tests. This will not only help with catching bugs but also make the code easier to maintain. However, I was not able to complete this extension on time.
+- **Tests**: I wrote a few simple tests using the Jest framework and the Supertest library. The tests primarily test the response recevied from my initialize route, ensure that the data from the random numbers API is working as intended. First test checks if the response is a parseable array. Second test checks if the length of the array is 4. Third test checks if the elements are numbers.
 
 ## Tech Stack
 

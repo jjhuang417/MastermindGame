@@ -13,17 +13,8 @@ const App = () => {
   const [playerInput, setPlayerInput] = useState([]);
   const [history, setHistory] = useState([]);
   const [modal, setModal] = useState(false);
-  const [timer, setTimer] = useState({
-    minutes: '0',
-    seconds: '0'
-  });
 
   let tries = 10 - history.length;
-
-  const timerChange = (time) => {
-    let { minutes, seconds }
-    (Number(minutes) < 10 ? '0' + minutes : minutes) + ':' + ((Number(seconds) < 10 ? '0' + seconds : seconds))
-  }
 
   // Get sequence and save as state
   useEffect(() => {
