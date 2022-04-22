@@ -30,9 +30,9 @@ describe("Fetch an array of 4 elements when the initialize route is hit", () => 
     request(app)
       .get("/initialize")
       .then((response) => {
-        const everyStr = (element) => {
-          return typeof Number(element) === "number";
-        };
+        const everyStr = (element) =>
+          typeof Number(element) === "number";
+        ;
         let code = JSON.parse(response.text);
         expect(code.every(everyStr)).toBe(true);
         done();
