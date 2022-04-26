@@ -10,7 +10,7 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 
 1. Install dependencies: `npm install`
 2. Start the node server: `npm run server`
-3. Open up a new terminal and run webpack: `npm run build`
+3. Run webpack: `npm run build`
 4. Open the app at http://localhost:3000.
 
 ## Rules
