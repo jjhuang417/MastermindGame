@@ -19,6 +19,22 @@ const fetchCode = (req, res) => {
     });
 };
 
+const fetchHard = (req, res) => {
+  let intURL =
+    "https://www.random.org/integers/?num=4&min=0&max=9&col=1&base=10&format=plain&rnd=new";
+  axios
+    .get(intURL)
+    .then((response) => {
+      let code = response.data;
+      code = code.split("\n");
+      code.pop();
+      res.status(200).send(code);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+};
+
 // App & Port
 const app = express();
 const port = 3000;
@@ -34,5 +50,7 @@ app.listen(port, (req, res) => {
 
 // Endpoint for page initial render
 app.get("/initialize", fetchCode);
+app.get("/hardmode", fetchHard);
+// create a hard mode route with diff url params
 
 module.exports = app;

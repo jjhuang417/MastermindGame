@@ -9,10 +9,11 @@ import Modal from "./Modal.jsx";
 
 const App = () => {
   // State
-  const [sequence, setSequence] = useState([]);
-  const [playerInput, setPlayerInput] = useState([]);
-  const [history, setHistory] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [sequence, setSequence] = useState([]); // answer sequence from API (arr of string of numbers)
+  const [playerInput, setPlayerInput] = useState([]); // inputs from player (arr of string of numbers)
+  const [history, setHistory] = useState([]); // array of objects (arr of obj)
+  const [modal, setModal] = useState(false); // boolean
+  const [hard, setHard] = useState(false); // boolean
 
   let tries = 10 - history.length;
 
@@ -122,16 +123,52 @@ const App = () => {
     }
   };
 
+  const hardMode = () => {
+    axios
+      .get("/hardmode")
+      .then((res) => {
+        setSequence(res.data);
+        setHard(true);
+        getFocus();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const normalMode = () => {
+    axios
+      .get("/initialize")
+      .then((res) => {
+        setSequence(res.data);
+        setHard(false);
+        getFocus();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // Main tag
+  // section tag
+  // article tag
+    // readability & accessibility (screen reader)
+
   return (
     <div className="highestDiv">
       <div className="titleWrap">
         <h1>Mastermind</h1>
+      </div>
+      <div className='guessCounterDiv'>
+        <button className='button-26' onClick={normalMode} disabled={playerInput.length > 0}>Normal</button>
+        <button className='button-26' onClick={hardMode} disabled={playerInput.length > 0}>Hard</button>
       </div>
       <Numpad
         addNum={addNum}
         playerInput={playerInput}
         onChangeInput={setPlayerInput}
         submitGuess={submitGuess}
+        hard={hard}
       />
       <div className="centerHistory">
         <InputHistory

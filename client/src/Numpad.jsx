@@ -3,14 +3,16 @@ import React from "react";
 
 const Numpad = (props) => {
   const num = ["0", "1", "2", "3", "4", "5", "6", "7"];
+  const hardNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   // Allow input change
   const handleInput = (event) => {
+    const maxGuess = props.hard ? 9 : 7;
     event.preventDefault();
     if (
       !isNaN(parseInt(event.nativeEvent.data)) &&
       Number(event.nativeEvent.data) >= 0 &&
-      Number(event.nativeEvent.data) <= 7
+      Number(event.nativeEvent.data) <= maxGuess
     ) {
       props.addNum(event.nativeEvent.data);
     }
@@ -52,10 +54,12 @@ const Numpad = (props) => {
     }
   };
 
+  const numsToRender = props.hard ? hardNum : num;
+
   return (
     <div name="numPadWrap" className="numPadWrap">
       <div className="functionButton">
-        {num.map((n, idx) => (
+        {numsToRender.map((n, idx) => (
           <button
             key={idx}
             className="button-22"

@@ -197,6 +197,54 @@ body {
   box-shadow: none;
 }
 
+/* Button 26 */
+.button-26 {
+  background-color: beige;
+  background-image: linear-gradient(beige, beige);
+  border: 1px solid beige;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: black;
+  cursor: pointer;
+  display: block;
+  font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 100%;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  outline: 0;
+  text-align: center;
+  transition: box-shadow 0.05s ease-in-out, opacity 0.05s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-26:hover {
+  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset,
+    rgba(0, 0, 0, 0.4) 0 1px 2px;
+  text-decoration: none;
+  transition-duration: 0.15s, 0.15s;
+}
+
+.button-26:active {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
+}
+
+.button-26:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button-26:disabled:active {
+  pointer-events: none;
+}
+
+.button-26:disabled:hover {
+  box-shadow: none;
+}
+
 /* Button 22 */
 .button-22 {
   background-color: #05bbaa;
