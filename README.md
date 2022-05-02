@@ -46,6 +46,8 @@ This is the Mastermind game, originally designed by Mordecai Meirowitz in 1970. 
 
 - **Tests**: I wrote a few simple unit tests using the Jest framework and the Supertest library for my Express server. The tests primarily test the response recevied from my initialize route, ensure that the data from the random numbers API is being fetched as intended. First test checks if the response is a parseable array. Second test checks if the length of the array is 4. Third test checks if the elements are numbers. If I had more time, I would also look into React Testing Library and write a few tests for the front end.
 
+- **Hard Mode**: Implement a hard mode that takes in a larger range of numbers. Instead of 0 - 7, when clicked on the Hard button, 0 - 9 inputs will be used instead.
+
 ## Tech Stack
 
 - React.js
