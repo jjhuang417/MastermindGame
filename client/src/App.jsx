@@ -148,7 +148,7 @@ const App = () => {
         console.log(err);
       });
   }
-
+  // For accessibility & readability
   // Main tag
   // section tag
   // article tag
